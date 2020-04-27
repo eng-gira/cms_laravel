@@ -1,4 +1,6 @@
 1- enable users to click on, in the login page, 'Become a moderator?' and then, submit a form that's sent 
     to the admin and other moderators. Majority of the moderators is needed. The admin's approval or dis 
     overrides that of the moderators. A moderator can add users or posts, edit posts and delete posts. 
-    A moderator can't delete users or other moderators. An admin can. - added on Sa250420
+    A moderator can't delete users or other moderators. An admin can. - added on 250420Sa
+
+2- get the bootstrap links (JS and CSS) in inc\header.php. - added on 270420Mo

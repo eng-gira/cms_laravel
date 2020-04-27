@@ -20,8 +20,10 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/post/new', 'PostController@newPost');
-Route::post('/post/store', 'PostController@storePost');
-Route::get('/post/edit/{post}', 'PostController@editPost');
-Route::post('/posts/update/{post}', 'PostController@updatePost');
-Route::delete('/posts/delete/{post}', 'PostController@deletePost');
+Route::get('/post/new', 'PostController@new_post');
+Route::post('/post/store', 'PostController@store_post');
+Route::get('/post/edit/{post}', 'PostController@edit_post');
+Route::post('/post/update/{post}', 'PostController@update_post');
+Route::delete('/post/delete/{post}', 'PostController@delete_post');
+Route::get('/post/upvote/{post}', 'PostController@upvote_post');
+Route::get('/post/downvote/{post}', 'PostController@downvote_post');

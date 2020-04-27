@@ -1,3 +1,3 @@
 <html>
-    <head> <title><?php echo $page_title; ?> </title> </head>
+    <head> <title><?php echo isset($page_title) ? $page_title : 'cms_laravel'; ?> </title> </head>
     <body>
