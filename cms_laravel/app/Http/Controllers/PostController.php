@@ -21,7 +21,7 @@ class PostController extends Controller
     public function new_post()
     {
         //if (!admin && !mod) goHome;
-        return view('posts.new');
+        return view('post.new');
     }
 
     public function store_post(Request $request)
@@ -31,17 +31,25 @@ class PostController extends Controller
         $post->body = $request->input('post_body');
         $post->save();
 
-        return view('home');
+        return redirect('home');
     }
 
     public function edit_post($id)
     {
-
+        return view('post.edit');
     }
 
     public function update_post(Request $request, $id)
     {
+        //if (!admin && !mod) goHome;
+        
+        $post = Post::find($id);
 
+        $post->title=$request->input('post_title');
+        $post->body=$request->input('post_body');
+        $post->save();
+
+        return redirect('home');
     }
 
     public function delete_post($id)
@@ -52,7 +60,7 @@ class PostController extends Controller
     public function show_post($id)
     {
         $post = Post::find($id);
-        return view('posts.show')->with('post', $post);
+        return view('post.show')->with('post', $post);
     }
 
     /**

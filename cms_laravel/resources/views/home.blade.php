@@ -16,6 +16,17 @@
 
                     You are logged in!
                 </div>
+
+                <div id='content'>
+                    @if(count($posts)>0)
+                        @foreach($posts as $post)
+                            <div id="post_{{$post->id}}" class='post_area'>
+                                <div class='post_title'>{{$post->title}}</div>
+                                <div class='post_body'>{{$post->body}}</div>
+                            </div>
+                        @endforeach
+                    @endif    
+                </div>
             </div>
         </div>
     </div>
