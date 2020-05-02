@@ -1,6 +1,6 @@
 <?php
-$page_title = 'CMS_Laravel';
-include_once('C:\xampp\htdocs\cms_laravel\cms_laravel\resources\inc\header.php');
+    $page_title = 'CMS_Laravel';
+    include_once('C:\xampp\htdocs\cms_laravel\cms_laravel\resources\inc\header.php');
 ?>
 
 <div id='content'>
@@ -12,5 +12,5 @@ include_once('C:\xampp\htdocs\cms_laravel\cms_laravel\resources\inc\header.php')
 </div>
 
 <?php
-include_once('C:\xampp\htdocs\cms_laravel\cms_laravel\resources\inc\footer.php');
+    include_once('C:\xampp\htdocs\cms_laravel\cms_laravel\resources\inc\footer.php');
 ?>

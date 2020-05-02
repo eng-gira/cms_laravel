@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('main');
+    return view('welcome');
 });
 
 Auth::routes();
@@ -22,6 +22,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/post/new', 'PostController@new_post');
 Route::post('/post/store', 'PostController@store_post');
+Route::get('/post/show/{post}', 'PostController@show_post');
 Route::get('/post/edit/{post}', 'PostController@edit_post');
 Route::post('/post/update/{post}', 'PostController@update_post');
 Route::delete('/post/delete/{post}', 'PostController@delete_post');

@@ -18,6 +18,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="/cms_laravel/cms_laravel/resources/inc/custom_styles.css"
+        rel="stylesheet"/>
 </head>
 <body>
     <div id="app">
@@ -49,6 +51,10 @@
                                 </li>
                             @endif
                         @else
+                            <a href='/cms_laravel/cms_laravel/public/post/new' style='padding:8px;'>
+                                New Post
+                            </a>
+                           
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
