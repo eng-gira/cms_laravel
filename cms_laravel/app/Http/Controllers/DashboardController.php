@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Post;
 
-class HomeController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -26,6 +26,11 @@ class HomeController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('home')->with('posts', $posts);
+        return view('dashboard')->with('posts', $posts);
+    }
+
+    public function settings()
+    {
+        return view('settings');
     }
 }

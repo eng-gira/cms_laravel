@@ -29,14 +29,19 @@ class PostController extends Controller
         $post = new Post;
         $post->title = $request->input('post_title');
         $post->body = $request->input('post_body');
+        $post->user_id = auth()->user()->id;
         $post->save();
 
-        return redirect('home');
+        return redirect('dashboard');
     }
 
     public function edit_post($id)
     {
-        return view('post.edit');
+        $post = Post::find($id);
+
+        if(auth()->user()->id != $post->user_id) return redirect('dashboard');
+
+        return view('post.edit')->with('post', $post);
     }
 
     public function update_post(Request $request, $id)
@@ -49,12 +54,15 @@ class PostController extends Controller
         $post->body=$request->input('post_body');
         $post->save();
 
-        return redirect('home');
+        return redirect('dashboard');
     }
 
     public function delete_post($id)
     {
-
+        $post = Post::find($id);
+        if(auth()->user()->id != $post->user_id) return redirect('dashboard');
+        $post->delete();
+        return redirect('dashboard');
     }
 
     public function show_post($id)

@@ -51,7 +51,7 @@
                                 </li>
                             @endif
                         @else
-                            <a href='/cms_laravel/cms_laravel/public/post/new' style='padding:8px;'>
+                            <a href='/cms_laravel/cms_laravel/public/post/new' class="btn btn-primary">
                                 New Post
                             </a>
                            
@@ -59,8 +59,11 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
-
+                                
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/cms_laravel/cms_laravel/public/dashboard/settings">
+                                        Settings
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
