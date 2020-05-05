@@ -35,7 +35,15 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cms_laravel/cms_laravel/public">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cms_laravel/cms_laravel/public/dashboard">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/cms_laravel/cms_laravel/public/about">About</a>
+                    </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

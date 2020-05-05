@@ -30,9 +30,8 @@
                                         {{$post->title}}
                                     </a>
                                 </h4>
-                                <div class='post_created_at'>
-                                    {{$post->created_at}}
-                                </div>
+                                <div class="post_created_at" style="display:inline-block">{{$post->created_at}}</div>
+                                <div class="post_author" style="display:inline-block">by <b>{{auth()->user()->name}}</b></div>
                                 <!-- <div class='post_body'>{{$post->body}}</div> -->
                                 <hr>
                             </div>

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\Post;
 
+use App\User;
+
 class PostController extends Controller
 {
     /**
@@ -68,7 +70,9 @@ class PostController extends Controller
     public function show_post($id)
     {
         $post = Post::find($id);
-        return view('post.show')->with('post', $post);
+        $author = User::find($post->user_id)->name;
+    
+        return view('post.show')->with('data', [$post, $author]);
     }
 
     /**

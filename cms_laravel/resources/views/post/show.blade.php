@@ -1,10 +1,10 @@
 @extends('layouts.app')
 @section('content')
+    <?php $post = $data[0]; $author=$data[1];?>
     <div id='content' style='padding:10px;'>
-        <a href="/cms_laravel/cms_laravel/public/dashboard" class="btn btn-secondary">Back</a>
-
         <div class="post_title">{{$post->title}}</div>
-        <div class="post_created_at">{{$post->created_at}}</div>
+        <div class="post_created_at" style="display:inline-block">{{$post->created_at}}</div>
+        <div class="post_author" style="display:inline-block">by <b>{{$author}}</b></div>
         <div class="post_body">{{$post->body}}</div><br><br>
         @if(!Auth::guest())
             @if(Auth::user()->id == $post->user_id)

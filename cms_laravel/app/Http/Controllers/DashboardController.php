@@ -25,7 +25,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $id = auth()->user()->id;
+        $posts = Post::where('user_id', $id)->get();
         return view('dashboard')->with('posts', $posts);
     }
 

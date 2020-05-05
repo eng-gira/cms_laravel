@@ -5,7 +5,6 @@
 @section('content')
 
 <h3> Update Post </h3>
-<a href="/cms_laravel/cms_laravel/public/post/show/{{$post->id}}" class="btn btn-secondary">Back</a>
 
 <form action="/cms_laravel/cms_laravel/public/post/update/{{$post->id}}" method="POST">
 @csrf
