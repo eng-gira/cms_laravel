@@ -34,7 +34,9 @@ class PostController extends Controller
         $post->user_id = auth()->user()->id;
         $post->save();
 
-        return redirect('dashboard');
+
+
+        return redirect('dashboard')->with('success', 'Post Stored');
     }
 
     public function edit_post($id)
@@ -56,15 +58,15 @@ class PostController extends Controller
         $post->body=$request->input('post_body');
         $post->save();
 
-        return redirect('dashboard');
+        return redirect('dashboard')->with('success', 'Post Updated');
     }
 
     public function delete_post($id)
     {
         $post = Post::find($id);
-        if(auth()->user()->id != $post->user_id) return redirect('dashboard');
+        if(auth()->user()->id != $post->user_id) return redirect('dashboard')->with('error', 'Unauthorized Access');
         $post->delete();
-        return redirect('dashboard');
+        return redirect('dashboard')->with('success', 'Post Deleted');
     }
 
     public function show_post($id)
@@ -89,5 +91,12 @@ class PostController extends Controller
     public function downvote_post($id)
     {
         
+    }
+
+    public function search(Request $request)
+    {
+        $for = $request->input('for');
+        $posts = Post::where('title','like', '%'.$for.'%')->orWhere('body', 'like', '%'.$for.'%')->get();
+        return view('post.search')->with('posts',$posts);
     }
 }

@@ -45,8 +45,13 @@
                         <a class="nav-link" href="/cms_laravel/cms_laravel/public/about">About</a>
                     </li>
                     </ul>
-
+                    
                     <!-- Right Side Of Navbar -->
+                    <form action="/cms_laravel/cms_laravel/public/post/search" method="POST" class="form-inline my-2 my-lg-0">
+                    @csrf
+                        <input name="for" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                    </form>
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
@@ -90,6 +95,7 @@
         </nav>
 
         <main class="py-4">
+            @include('inc.messages')
             @yield('content')
         </main>
     </div>

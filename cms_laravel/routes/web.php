@@ -28,3 +28,4 @@ Route::post('/post/update/{post}', 'PostController@update_post');
 Route::delete('/post/delete/{post}', 'PostController@delete_post');
 Route::get('/post/upvote/{post}', 'PostController@upvote_post');
 Route::get('/post/downvote/{post}', 'PostController@downvote_post');
+Route::post('/post/search', 'PostController@search');
