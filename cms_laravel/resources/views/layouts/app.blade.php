@@ -18,8 +18,6 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="/cms_laravel/cms_laravel/resources/inc/custom_styles.css"
-        rel="stylesheet"/>
 </head>
 <body>
     <div id="app">
@@ -38,9 +36,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/cms_laravel/cms_laravel/public">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/cms_laravel/cms_laravel/public/dashboard">Dashboard</a>
-                    </li>
+                    @if(Auth::user() && (Auth::user()->admin || Auth::user()->mod))
+                        <li class="nav-item">
+                            <a class="nav-link" href="/cms_laravel/cms_laravel/public/dashboard">Dashboard</a>
+                        </li>
+                    @endif
                     <li class="nav-item">
                         <a class="nav-link" href="/cms_laravel/cms_laravel/public/about">About</a>
                     </li>
@@ -49,7 +49,7 @@
                     <!-- Right Side Of Navbar -->
                     <form action="/cms_laravel/cms_laravel/public/post/search" method="POST" class="form-inline my-2 my-lg-0">
                     @csrf
-                        <input name="for" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                        <input name="search" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                         <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
                     </form>
                     <ul class="navbar-nav ml-auto">
@@ -64,10 +64,11 @@
                                 </li>
                             @endif
                         @else
-                            <a href='/cms_laravel/cms_laravel/public/post/new' class="btn btn-primary">
-                                New Post
-                            </a>
-                           
+                            @if(Auth::user()->admin || Auth::user()->mod)
+                                <a href='/cms_laravel/cms_laravel/public/post/new' class="btn btn-primary">
+                                    New Post
+                                </a>
+                            @endif
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>

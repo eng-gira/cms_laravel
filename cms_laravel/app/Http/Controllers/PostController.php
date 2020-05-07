@@ -17,26 +17,33 @@ class PostController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['show_post']]);
+        $this->middleware('auth', ['except' => ['show_post', 'search']]);
     }
 
     public function new_post()
-    {
-        //if (!admin && !mod) goHome;
-        return view('post.new');
+    {        
+        $can = auth()->user()->admin || auth()->user()->mod;
+
+        return $can ? view('post.new') : redirect('dashboard')->with('error', 'Unauthorized Access');
     }
 
     public function store_post(Request $request)
     {
-        $post = new Post;
-        $post->title = $request->input('post_title');
-        $post->body = $request->input('post_body');
-        $post->user_id = auth()->user()->id;
-        $post->save();
+        $auth_id = auth()->user()->id;
 
+        $can = auth()->user()->admin || auth()->user()->mod;
+        
+        if($can)
+        {
+            $post = new Post;
+            $post->title = $request->input('post_title');
+            $post->body = $request->input('post_body');
+            $post->user_id = auth()->user()->id;
+            $post->save();
+        }
 
-
-        return redirect('dashboard')->with('success', 'Post Stored');
+        return $can ? redirect('dashboard')->with('success', 'Post Stored'):
+            redirect('dashboard')->with('error', 'Unauthorized Access');
     }
 
     public function edit_post($id)
@@ -95,8 +102,23 @@ class PostController extends Controller
 
     public function search(Request $request)
     {
-        $for = $request->input('for');
-        $posts = Post::where('title','like', '%'.$for.'%')->orWhere('body', 'like', '%'.$for.'%')->get();
-        return view('post.search')->with('posts',$posts);
+        $this->validate($request, ['search'=>'required']);
+        $search = $request->input('search');
+        $posts = Post::where('title','like', '%'.$search.'%')->orWhere('body', 'like', '%'.$search.'%')
+        ->get();
+
+        $authors = array();
+        if(count($posts)>0)
+        {
+            foreach($posts as $post)
+            {
+                $authors[$post->id] = User::find($post->user_id)->name;
+            }
+        }
+
+        $count_search_res=count($posts);
+
+        return view('post.search')->with('data', ['posts'=>$posts, 'authors'=>$authors, 
+            'count_search_res'=>$count_search_res]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Post;
+use App\User;
 
 class DashboardController extends Controller
 {
@@ -25,9 +26,12 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $id = auth()->user()->id;
-        $posts = Post::where('user_id', $id)->orderBy('created_at','desc')->get();
-        return view('dashboard')->with('posts', $posts);
+        $auth_id = auth()->user()->id;
+        $can = auth()->user()->admin || auth()->user()->mod;
+
+        $posts = Post::where('user_id', $auth_id)->orderBy('created_at','desc')->get();
+        return $can ? view('dashboard')->with('posts', $posts) : redirect('/')->
+        with('error', 'Unauthorized Access');
     }
 
     public function settings()
