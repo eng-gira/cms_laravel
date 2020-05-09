@@ -2,3 +2,5 @@
     to the admin and other moderators. Majority of the moderators is needed. The admin's approval or dis 
     overrides that of the moderators. A moderator can add users or posts, edit posts and delete posts. 
     A moderator can't delete users or other moderators. An admin can. - added on 250420Sa
+
+2- ask to confirm b4 deleting posts. - added on 080520Fr

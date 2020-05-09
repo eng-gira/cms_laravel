@@ -27,10 +27,19 @@ class DashboardController extends Controller
     public function index()
     {
         $auth_id = auth()->user()->id;
-        $can = auth()->user()->admin || auth()->user()->mod;
+        
+        $posts = Post::where('user_id', $auth_id)->orderBy('created_at','desc')->get();        
+        
+        $data = ['posts'=>$posts];
 
-        $posts = Post::where('user_id', $auth_id)->orderBy('created_at','desc')->get();
-        return $can ? view('dashboard')->with('posts', $posts) : redirect('/')->
+        if(auth()->user()->admin)
+        {
+            $moderators = User::where('mod', '1')->get();
+            $data['moderators']=$moderators;
+            return view('dashboard')->with('data', $data);
+        }
+
+        return auth()->user()->mod ? view('dashboard')->with('data', $data) : redirect('/')->
         with('error', 'Unauthorized Access');
     }
 
