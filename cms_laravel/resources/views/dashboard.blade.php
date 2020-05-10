@@ -2,29 +2,39 @@
 <?php 
     $page_title='Dashboard';
     $posts = $data['posts'];
+
+    // <!--  -->
 ?>
 @section('content')
 <div class="container">
     <div id='content'>
         @if(auth()->user()->admin)
             <?php $moderators = $data['moderators'];?>
-            <h2 id="mods">Moderators</h2>
+            @if(count($moderators)>0)
+                <div id="moderators_management_area">
+                    <h2>Moderators</h2>
+                    <br>
+                    @foreach($moderators as $moderator)
+                        <h5 style="float:left">Name: {{$moderator->name}} </h5>
+                        
+                        <p style="float:right;margin-left:10px" class="btn btn-danger"
+                        onclick="confirmModFire({{$moderator->id}}, '{{$moderator->name}}')">
+                            Fire Moderator
+                        </p>
+                        <br>
+                        <br>
+                        <hr>
+                    @endforeach
+                    <br><br>
+                </div>
+            @endif
+
+            <a href="/cms_laravel/cms_laravel/public/admin/show_all_users" class="btn btn-primary">
+                All Users
+            </a>
             <br>
-            @foreach($moderators as $moderator)
-                <h5 style="float:left">Name: {{$moderator->name}} </h5>
-                
-                <a style="float:right;margin-left:10px" class="btn btn-danger" 
-                    onclick="confirmModFire({{$moderator->id}})">
-                    Fire Moderator
-                </a>
-                <a style="float:right" class="btn btn-primary" href="">
-                    Update Privileges
-                </a>
-                <br>
-                <br>
-                <hr>
-            @endforeach
-            <br><br>
+            <br>
+            <hr>
         @endif
 
         @if(count($posts)>0)
@@ -47,3 +57,15 @@
     </div>
 </div>
 @endsection
+
+<script>
+    function confirmModFire(moderator_id, moderator_name)
+    {
+        let conf = confirm("Delete moderator " + moderator_name);
+
+        if(conf==true)
+        {
+            location.replace("/cms_laravel/cms_laravel/public/admin/fire_moderator/"+moderator_id);
+        }  
+    }
+</script>

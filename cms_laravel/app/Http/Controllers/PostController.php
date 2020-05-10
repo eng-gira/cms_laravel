@@ -71,7 +71,11 @@ class PostController extends Controller
     public function delete_post($id)
     {
         $post = Post::find($id);
-        if(auth()->user()->id != $post->user_id) return redirect('dashboard')->with('error', 'Unauthorized Access');
+        if(auth()->user()->id != $post->user_id && !auth()->user()->admin) 
+        {
+            return redirect('dashboard')->with('error', 'Unauthorized Access');
+        }
+
         $post->delete();
         return redirect('dashboard')->with('success', 'Post Deleted');
     }
@@ -79,7 +83,8 @@ class PostController extends Controller
     public function show_post($id)
     {
         $post = Post::find($id);
-        $author = User::find($post->user_id)->name;
+
+        $author = User::find($post->user_id) ? User::find($post->user_id)->name : 'Deleted';
     
         return view('post.show')->with('data', [$post, $author]);
     }
@@ -112,7 +117,8 @@ class PostController extends Controller
         {
             foreach($posts as $post)
             {
-                $authors[$post->id] = User::find($post->user_id)->name;
+                $authors[$post->id] = User::find($post->user_id)? 
+                    User::find($post->user_id)->name : 'Deleted';
             }
         }
 

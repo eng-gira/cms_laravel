@@ -29,3 +29,7 @@ Route::delete('/post/delete/{post}', 'PostController@delete_post');
 Route::get('/post/upvote/{post}', 'PostController@upvote_post');
 Route::get('/post/downvote/{post}', 'PostController@downvote_post');
 Route::post('/post/search', 'PostController@search');
+Route::get('/admin/hire_moderator/{selected_user_id}', 'AdminController@hire_moderator');
+Route::get('/admin/fire_moderator/{moderator_id}', 'AdminController@fire_moderator');
+Route::get('/admin/show_all_users', 'AdminController@show_all_users');
+Route::get('/admin/force_delete_user/{user_id}', 'AdminController@force_delete_user');

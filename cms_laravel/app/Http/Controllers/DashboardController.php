@@ -29,13 +29,14 @@ class DashboardController extends Controller
         $auth_id = auth()->user()->id;
         
         $posts = Post::where('user_id', $auth_id)->orderBy('created_at','desc')->get();        
-        
+
         $data = ['posts'=>$posts];
 
         if(auth()->user()->admin)
         {
             $moderators = User::where('mod', '1')->get();
             $data['moderators']=$moderators;
+            
             return view('dashboard')->with('data', $data);
         }
 

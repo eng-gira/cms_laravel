@@ -7,7 +7,7 @@
         <div class="post_author" style="display:inline-block">by <b>{{$author}}</b></div>
         <div class="post_body">{{$post->body}}</div><br><br>
         @if(!Auth::guest())
-            @if(Auth::user()->id == $post->user_id)
+            @if((Auth::user()->id == $post->user_id) || Auth()->user()->admin)
                 <a href="/cms_laravel/cms_laravel/public/post/edit/{{$post->id}}" 
                     class="btn btn-primary">Edit</a>
                 <form action="/cms_laravel/cms_laravel/public/post/delete/{{$post->id}}" method="POST" 

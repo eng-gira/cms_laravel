@@ -16,7 +16,11 @@ class PagesController extends Controller
     {
         $posts = Post::orderBy('created_at', 'desc')->get();
         $authors_names = array();
-        foreach($posts as $post) $authors_names[$post->user_id] = User::find($post->user_id)->name;
+        foreach($posts as $post)
+        {
+            if(!User::find($post->user_id)) {$authors_names[$post->user_id] = 'Deleted';continue;}
+            $authors_names[$post->user_id] = User::find($post->user_id)->name;
+        }
         return view('main')->with('data', [$posts, $authors_names]);
     }
     public function about()
