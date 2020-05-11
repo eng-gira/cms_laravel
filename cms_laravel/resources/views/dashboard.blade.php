@@ -42,13 +42,13 @@
             @foreach($posts as $post)
                 <div id="post_{{$post->id}}" class='post_area'>
                     <!-- <div class='post_cover_photo'>{{$post->cover_photo}}</div> -->
-                    <h4>
+                    <h4 class='post_title'>
                         <a href='/cms_laravel/cms_laravel/public/post/show/{{$post->id}}'>
                             {{$post->title}}
                         </a>
                     </h4>
-                    <div class="post_created_at" style="display:inline-block">{{$post->created_at}}</div>
-                    <div class="post_author" style="display:inline-block">by <b>{{auth()->user()->name}}</b></div>
+                    <h6 class="post_created_at" style="display:inline-block">{{$post->created_at}}</h6>
+                    <h6 class="post_author" style="display:inline-block">by <b>{{auth()->user()->name}}</b></h6>
                     <!-- <div class='post_body'>{{$post->body}}</div> -->
                     <hr>
                 </div>

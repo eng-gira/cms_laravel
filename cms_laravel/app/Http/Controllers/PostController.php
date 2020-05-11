@@ -94,7 +94,42 @@ class PostController extends Controller
      */
     public function upvote_post($id)
     {
+        $auth_id = auth()->user()->id;
 
+        $post = Post::find($id);
+
+        $post_up_voters = $post->up_voters;
+
+        $arr_post_up_voters = explode(';', $post_up_voters, -1);
+
+        if(in_array($auth_id, $arr_post_up_voters))
+        {
+            //removal of upvote
+            $post_up_voters = str_replace($auth_id.';', '', $post_up_voters);
+
+            $post->up_voters = $post_up_voters;
+
+            $post->save();
+
+            return 'Upvote';
+        }
+
+        else 
+        {
+            //removal of downvote (if existed) then, upvoting
+            $post_down_voters = $post->down_voters;
+            
+            if(in_array($auth_id, explode(';', $post_down_voters, -1)))
+            {
+                $post->down_voters = str_replace($auth_id.';', '', $post_down_voters);
+            }
+
+            $post->up_voters = $post_up_voters . $auth_id . ';';
+
+            $post->save();
+
+            return 'Upvoted';
+        }
     }
 
     /**
@@ -102,7 +137,42 @@ class PostController extends Controller
      */
     public function downvote_post($id)
     {
-        
+        $auth_id = auth()->user()->id;
+
+        $post = Post::find($id);
+
+        $post_down_voters = $post->down_voters;
+
+        $arr_post_down_voters = explode(';', $post_down_voters, -1);
+
+        if(in_array($auth_id, $arr_post_down_voters))
+        {
+            //removal of downvote
+            $post_down_voters = str_replace($auth_id.';', '', $post_down_voters);
+
+            $post->down_voters = $post_down_voters;
+
+            $post->save();
+
+            return 'Downvote';
+        }
+
+        else 
+        {
+            //removal of upvote (if existed) then, downvoting
+            $post_up_voters = $post->up_voters;
+
+            if(in_array($auth_id, explode(';', $post_up_voters, -1)))
+            {
+                $post->up_voters = str_replace($auth_id.';', '', $post_up_voters);
+            }
+
+            $post->down_voters = $post_down_voters . $auth_id . ';';
+
+            $post->save();
+
+            return 'Downvoted';
+        }
     }
 
     public function search(Request $request)
