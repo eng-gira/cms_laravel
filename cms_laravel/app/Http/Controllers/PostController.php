@@ -128,7 +128,7 @@ class PostController extends Controller
 
             $post->save();
 
-            return 'Upvoted';
+            return '<b>Upvoted</b>';
         }
     }
 
@@ -171,7 +171,7 @@ class PostController extends Controller
 
             $post->save();
 
-            return 'Downvoted';
+            return '<b>Downvoted</b>';
         }
     }
 

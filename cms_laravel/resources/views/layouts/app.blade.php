@@ -11,6 +11,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script  type="text/javascript" src="{{ asset('js/functions.js') }}"></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,6 +20,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/custom_styles.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -75,7 +78,7 @@
                                 </a>
                                 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/cms_laravel/cms_laravel/public/dashboard/settings">
+                                    <a class="dropdown-item" href="/cms_laravel/cms_laravel/public/settings">
                                         Settings
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
