@@ -37,4 +37,5 @@ Route::get("/user/quit_moderation", 'UserController@quit_moderation');
 Route::post("/user/update_user_name", 'UserController@update_user_name');
 Route::post("/user/update_user_email", 'UserController@update_user_email');
 Route::get("/user/delete_user", 'UserController@delete_user');
+Route::post('/user/reset_user_pw', 'UserController@reset_user_pw');
 

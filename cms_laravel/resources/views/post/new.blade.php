@@ -10,11 +10,13 @@
     @csrf  
         <div class='form-group'>
             <label for='title'>Title</label>
-            <input type = "text" name="post_title" class='form-control' placeholder='Title' required/>
+            <input type = "text" name="post_title" class='form-control' placeholder='Title' style="height:200" 
+                required/>
         </div>
         <div class='form-group'>
             <label for='body'>Body</label>
-            <input type='text' name="post_body" class='form-control' placeholder='Body' required/>
+            <input type='text' name="post_body" class='form-control' placeholder='Body' style="height:500" 
+                required/>
         </div>
         <button class='btn btn-primary'> Submit </button>
 

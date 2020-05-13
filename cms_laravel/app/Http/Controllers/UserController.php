@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 use App\User;
 
@@ -56,15 +57,31 @@ class UserController extends Controller
         return redirect('/')->with('success', 'Email updated');
     }
 
-    public function delete_user()
+    public function reset_user_pw()
     {
-        $to_delete = User::find(auth()->user()->id);
-        
-        if($to_delete->admin) return redirect('/settings')->with('error', 'Admin Can not Be Delete');
-        
-        $to_delete->delete();
+        if(!isset($_POST['old_pw']) || !isset($_POST['new_pw']) || !isset($_POST['confirm_new_pw']))
+        {
+            return redirect('/ettings')->with('error', 'Fill all password fields!');
+        }
 
-        return redirect('/')->with('success', 'Account deleted');
+        $auth = User::find(auth()->user()->id);
+
+        $old_pw = $_POST['old_pw'];
+
+        if(!Hash::check($old_pw, $auth->password)) return redirect('settings')->
+            with('error', 'Wrong Old Password');
+
+        $new_pw = $_POST['new_pw'];
+        $confirm_new_pw = $_POST['confirm_new_pw'];
+
+        if($new_pw != $confirm_new_pw) return redirect('settings')->with('error', 'Wrong Confrimation');
+        
+        
+       $auth->password = Hash::make($new_pw);
+
+       $auth->save();
+
+       return redirect('settings')->with('success', 'Password Updated');
     }
 
     public function quit_moderation()
@@ -78,5 +95,16 @@ class UserController extends Controller
         $to_quit->save();
 
         return redirect('/')->with('success', 'No longer a moderator');
+    }
+
+    public function delete_user()
+    {
+        $to_delete = User::find(auth()->user()->id);
+        
+        if($to_delete->admin) return redirect('/settings')->with('error', 'Admin Can not Be Delete');
+        
+        $to_delete->delete();
+
+        return redirect('/')->with('success', 'Account deleted');
     }
 }
