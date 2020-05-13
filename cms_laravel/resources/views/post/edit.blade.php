@@ -11,12 +11,12 @@
     <div class='form-group'>
         <label for='title'>Title</label>
         <input type = "text" name="post_title" class='form-control' placeholder="{{$post->title}}"
-            value='{{$post->title}}' style="height:200" required/>
+            value='{{$post->title}}' required/>
     </div>
     <div class='form-group'>
         <label for='body'>Body</label>
         <input type='text' name="post_body" class='form-control' placeholder='{{$post->body}}'
-            value='{{$post->body}}' style="height:500;" required/>
+            value='{{$post->body}}' required/>
     </div>
     <button class='btn btn-primary'> Update </button>
 
