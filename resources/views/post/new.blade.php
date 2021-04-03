@@ -6,7 +6,7 @@
 
     <h3 style="padding:10px"> New Post </h3>
 
-    <form style="padding:10px" action="/cms_laravel/cms_laravel/public/post/store" method="POST"> 
+    <form style="padding:10px" action="/post/store" method="POST"> 
     @csrf  
         <div class='form-group'>
             <label for='title'>Title</label>

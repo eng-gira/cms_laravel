@@ -37,20 +37,20 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="/cms_laravel/cms_laravel/public">Home</a>
+                        <a class="nav-link" href="/">Home</a>
                     </li>
                     @if(Auth::user() && (Auth::user()->admin || Auth::user()->mod))
                         <li class="nav-item">
-                            <a class="nav-link" href="/cms_laravel/cms_laravel/public/dashboard">Dashboard</a>
+                            <a class="nav-link" href="/dashboard">Dashboard</a>
                         </li>
                     @endif
                     <li class="nav-item">
-                        <a class="nav-link" href="/cms_laravel/cms_laravel/public/about">About</a>
+                        <a class="nav-link" href="/about">About</a>
                     </li>
                     </ul>
                     
                     <!-- Right Side Of Navbar -->
-                    <form action="/cms_laravel/cms_laravel/public/post/search" method="POST" class="form-inline my-2 my-lg-0">
+                    <form action="/post/search" method="POST" class="form-inline my-2 my-lg-0">
                     @csrf
                         <input name="search" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                         <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
@@ -68,7 +68,7 @@
                             @endif
                         @else
                             @if(Auth::user()->admin || Auth::user()->mod)
-                                <a href='/cms_laravel/cms_laravel/public/post/new' class="btn btn-primary">
+                                <a href='/post/new' class="btn btn-primary">
                                     New Post
                                 </a>
                             @endif
@@ -78,7 +78,7 @@
                                 </a>
                                 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/cms_laravel/cms_laravel/public/settings">
+                                    <a class="dropdown-item" href="/settings">
                                         Settings
                                     </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"

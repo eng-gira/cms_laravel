@@ -16,7 +16,7 @@ function upvote(post_id)
         }
     };
         
-    xhttp.open("GET", '/cms_laravel/cms_laravel/public/post/upvote/'+post_id, true);
+    xhttp.open("GET", '/post/upvote/'+post_id, true);
     xhttp.send();
 }
 
@@ -36,6 +36,6 @@ function downvote(post_id)
         }
     };
         
-    xhttp.open("GET", '/cms_laravel/cms_laravel/public/post/downvote/'+post_id, true);
+    xhttp.open("GET", '/post/downvote/'+post_id, true);
     xhttp.send();
 }

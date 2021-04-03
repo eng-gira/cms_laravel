@@ -9,7 +9,7 @@
                         <div id="post_{{$post->id}}" class='post_area'>
                             <!-- <div class='post_cover_photo'>{{$post->cover_photo}}</div> -->
                             <h4 class="post_title">
-                                <a href='/cms_laravel/cms_laravel/public/post/show/{{$post->id}}'>
+                                <a href='/post/show/{{$post->id}}'>
                                     {{$post->title}}
                                 </a>
                             </h4>

@@ -29,7 +29,7 @@
                 </div>
             @endif
 
-            <a href="/cms_laravel/cms_laravel/public/admin/show_all_users" class="btn btn-primary">
+            <a href="/admin/show_all_users" class="btn btn-primary">
                 All Users
             </a>
             <br>
@@ -43,7 +43,7 @@
                 <div id="post_{{$post->id}}" class='post_area'>
                     <!-- <div class='post_cover_photo'>{{$post->cover_photo}}</div> -->
                     <h4 class='post_title'>
-                        <a href='/cms_laravel/cms_laravel/public/post/show/{{$post->id}}'>
+                        <a href='post/show/{{$post->id}}'>
                             {{$post->title}}
                         </a>
                     </h4>
@@ -65,7 +65,7 @@
 
         if(conf==true)
         {
-            location.replace("/cms_laravel/cms_laravel/public/admin/fire_moderator/"+moderator_id);
+            location.replace("/admin/fire_moderator/"+moderator_id);
         }  
     }
 </script>

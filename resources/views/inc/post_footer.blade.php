@@ -1,9 +1,9 @@
 @if((Auth::user()->id == $post->user_id) || Auth()->user()->admin)
     @if(Auth::user()->id == $post->user_id)
-        <a href="/cms_laravel/cms_laravel/public/post/edit/{{$post->id}}" 
+        <a href="/post/edit/{{$post->id}}" 
         class="btn btn-primary">Edit</a>
     @endif
-    <form action="/cms_laravel/cms_laravel/public/post/delete/{{$post->id}}" method="POST" 
+    <form action="/post/delete/{{$post->id}}" method="POST" 
     style="float:right">
         @csrf
         <input type="hidden" name="_method" value="delete"/><!--To make the method=DELETE for routing-->

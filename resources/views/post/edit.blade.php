@@ -6,7 +6,7 @@
 
 <h3> Update Post </h3>
 
-<form action="/cms_laravel/cms_laravel/public/post/update/{{$post->id}}" method="POST">
+<form action="/post/update/{{$post->id}}" method="POST">
 @csrf
     <div class='form-group'>
         <label for='title'>Title</label>

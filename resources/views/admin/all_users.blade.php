@@ -31,7 +31,7 @@
 
         if(conf==true)
         {
-            location.replace("/cms_laravel/cms_laravel/public/admin/force_delete_user/"+user_id);
+            location.replace("/admin/force_delete_user/"+user_id);
         }  
     }
 
@@ -41,7 +41,7 @@
 
         if(conf==true)
         {
-            location.replace("/cms_laravel/cms_laravel/public/admin/hire_moderator/"+user_id);
+            location.replace("/admin/hire_moderator/"+user_id);
         }  
     }
 </script>
