@@ -56,7 +56,7 @@
         @endif    
 
         <!-- Upload a photo, and list uploaded photos -->
-        <form action="/dashboard/upload" method="POST">
+        <form action="/dashboard/upload" method="POST" enctype="multipart/form-data">
         @csrf
             Image Path: <input type="file" name="image_testing"/>
             <button class="btn btn-secondary"> Upload </button>
