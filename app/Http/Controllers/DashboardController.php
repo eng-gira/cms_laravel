@@ -57,7 +57,7 @@ class DashboardController extends Controller
 
         // $result = $request->file("image_testing"); // debugging: works
         
-        $uploadedFileUrl = Cloudinary::upload($request->file('file')->getRealPath())->getSecurePath();
+        $uploadedFileUrl = Cloudinary::upload($request->file('image_testing')->getRealPath())->getSecurePath();
 
         // $result = $request->file("image_testing")->storeOnCloudinary();
 
