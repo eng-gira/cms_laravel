@@ -63,9 +63,9 @@ class DashboardController extends Controller
 
         // $pathOnCloudinary = $result->getPath();
 
-        $pathOnCloudinary = $uploadedFileUrl;
+        // $pathOnCloudinary = $uploadedFileUrl;
 
-        echo "path is $pathOnCloudinary <br>";
+        // echo "path is $pathOnCloudinary <br>";
         // $toUpdate = User::find(auth()->user()->id);
 
         // $toUpdate->name = $toUpdate->name . " && image: $pathOnCloudinary";
