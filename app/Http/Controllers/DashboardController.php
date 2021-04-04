@@ -57,16 +57,20 @@ class DashboardController extends Controller
 
         // $result = $request->file("image_testing"); // debugging: works
         
-        $result = $request->file("image_testing")->storeOnCloudinary();
+        $uploadedFileUrl = Cloudinary::upload($request->file('file')->getRealPath())->getSecurePath();
 
-        $pathOnCloudinary = $result->getPath();
+        // $result = $request->file("image_testing")->storeOnCloudinary();
+
+        // $pathOnCloudinary = $result->getPath();
+
+        $pathOnCloudinary = $uploadedFileUrl;
 
         echo "path is $pathOnCloudinary <br>";
-        $toUpdate = User::find(auth()->user()->id);
+        // $toUpdate = User::find(auth()->user()->id);
 
-        $toUpdate->name = $toUpdate->name . " && image: $pathOnCloudinary";
+        // $toUpdate->name = $toUpdate->name . " && image: $pathOnCloudinary";
 
-        $toUpdate->save();
+        // $toUpdate->save();
         
     }
 }
