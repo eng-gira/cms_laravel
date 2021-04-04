@@ -53,18 +53,10 @@ class DashboardController extends Controller
     //Upload
     public function upload(Request $request)
     {
-        $uploadedFileUrl = Cloudinary::upload(
-            
-            $request->file("image_testing")->getRealPath()
-
-        )->getSecurePath();
-
         $result = $request->file("image_testing")->storeOnCloudinary();
 
-        // $pathOnCloudinary = $result->getPath();
+        $pathOnCloudinary = $result->getPath();
         
-        $pathOnCloudinary = $uploadedFileUrl;
-
         $toUpdate = User::find(auth()->user()->id);
 
         $toUpdate->name = $toUpdate->name . " && image: $pathOnCloudinary";
