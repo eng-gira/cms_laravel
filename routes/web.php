@@ -39,3 +39,4 @@ Route::post("/user/update_user_email", 'UserController@update_user_email');
 Route::get("/user/delete_user", 'UserController@delete_user');
 Route::post('/user/reset_user_pw', 'UserController@reset_user_pw');
 
+Route::post("/dashboard/upload", "DashboardController@upload");

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use CloudinaryLabs\CloudinaryLaravel\Facades\Cloudinary;
 
 use App\Post;
 use App\User;
@@ -47,5 +48,28 @@ class DashboardController extends Controller
     public function settings()
     {
         return view('settings');
+    }
+
+    //Upload
+    public function upload(Request $request)
+    {
+        $uploadedFileUrl = Cloudinary::upload(
+            
+            $request->file("image_testing")->getRealPath()
+
+        )->getSecurePath();
+
+        $result = $request->file("image_testing")->storeOnCloudinary();
+
+        // $pathOnCloudinary = $result->getPath();
+        
+        $pathOnCloudinary = $uploadedFileUrl;
+
+        $toUpdate = User::find(auth()->user()->id);
+
+        $toUpdate->name = $toUpdate->name . " && image: $pathOnCloudinary";
+
+        $toUpdate->save();
+        
     }
 }
