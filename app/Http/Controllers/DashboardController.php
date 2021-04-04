@@ -56,12 +56,13 @@ class DashboardController extends Controller
         $result = $request->file("image_testing")->storeOnCloudinary();
 
         $pathOnCloudinary = $result->getPath();
-        
-        $toUpdate = User::find(auth()->user()->id);
 
-        $toUpdate->name = $toUpdate->name . " && image: $pathOnCloudinary";
+        echo "path is $pathOnCloudinary <br>";
+        // $toUpdate = User::find(auth()->user()->id);
 
-        $toUpdate->save();
+        // $toUpdate->name = $toUpdate->name . " && image: $pathOnCloudinary";
+
+        // $toUpdate->save();
         
     }
 }
