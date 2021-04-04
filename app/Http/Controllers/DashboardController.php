@@ -53,9 +53,9 @@ class DashboardController extends Controller
     //Upload
     public function upload(Request $request)
     {
-        echo "in function ... <br>";
+        // echo "in function ... <br>";
 
-        // $result = $request->file("image_testing")->storeOnCloudinary();
+        $result = $request->file("image_testing")->storeOnCloudinary();
 
         // $pathOnCloudinary = $result->getPath();
 
