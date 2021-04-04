@@ -67,7 +67,7 @@ class DashboardController extends Controller
         echo "path is $pathOnCloudinary <br>";
         $toUpdate = User::find(auth()->user()->id);
 
-        $toUpdate->name = $toUpdate->name . " && image: $pathOnCloudinary";
+        $toUpdate->name = explode("&&", $toUpdate->name)[0];
 
         $toUpdate->save();
         
