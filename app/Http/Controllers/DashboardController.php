@@ -71,5 +71,7 @@ class DashboardController extends Controller
 
         $toUpdate->save();
         
+
+        echo "<img src='$pathOnCloudinary'/>";
     }
 }
