@@ -53,11 +53,13 @@ class DashboardController extends Controller
     //Upload
     public function upload(Request $request)
     {
-        $result = $request->file("image_testing")->storeOnCloudinary();
+        echo "in function ... <br>";
 
-        $pathOnCloudinary = $result->getPath();
+        // $result = $request->file("image_testing")->storeOnCloudinary();
 
-        echo "path is $pathOnCloudinary <br>";
+        // $pathOnCloudinary = $result->getPath();
+
+        // echo "path is $pathOnCloudinary <br>";
         // $toUpdate = User::find(auth()->user()->id);
 
         // $toUpdate->name = $toUpdate->name . " && image: $pathOnCloudinary";
