@@ -55,7 +55,8 @@ class DashboardController extends Controller
     {
         // echo "in function ... <br>";
 
-        $result = $request->file("image_testing")->storeOnCloudinary();
+        $result = $request->file("image_testing");
+        //->storeOnCloudinary();
 
         // $pathOnCloudinary = $result->getPath();
 
